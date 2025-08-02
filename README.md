@@ -15,7 +15,7 @@ This project configures a Raspberry Pi 5 as a centralized syslog server to recei
 ## Step 1: Network Setup and SSH Configuration on Raspberry Pi
 
 - Configured a static IP on the Pi: `192.168.X.XX`
-- Enabled and hardened SSH:
+- Enabled and hardened SSH
 - Disabled password authentication (`PasswordAuthentication no`)
 - Allowed SSH access for user `username` only (`AllowUsers username`)
 - Generated and configured SSH key authentication (`ssh-keygen`)
@@ -75,12 +75,14 @@ This project configures a Raspberry Pi 5 as a centralized syslog server to recei
 - Corrected file permission issues (chmod + chown) for username
 - Verified SSH, ping, and TCP connectivity between Windows client and Pi server
 - Verified log reception on Pi server
-  `sudo tail -f /var/log/windows_logs/*.log`
+  ```
+  sudo tail -f /var/log/windows_logs/*.log
 
 ## Step 5: Log Management and Automation
 
 - Cleared logs without deleting file
-  `sudo find /var/log/windows_logs/ -type f -name "*.log" -exec truncate -s 0 {} \;`
+  ```
+  sudo find /var/log/windows_logs/ -type f -name "*.log" -exec truncate -s 0 {} \;
 - Setup weekly cron job to automate log truncation every Sunday at 3 AM
   ```
   sudo crontab -e
